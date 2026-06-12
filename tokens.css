@@ -1,0 +1,133 @@
+/* Hallmark · pre-emit critique: P4 H5 E4 S4 R5 V4 */
+/* Hallmark · genre: modern-minimal · macrostructure: Split Studio · H2 diptych knobs: ratio=7/5, right=css-art proof, divider=negative-space
+ * theme: custom · vibe: "calma clínica, precisión, confianza" · paper: oklch(98.5% 0.006 195) · accent: oklch(55% 0.13 195)
+ * display: Geist · body: Geist · outlier: Fraunces italic (wordmark only) · axes: light / geometric-sans / chromatic-teal ~195°
+ * enrichment: Tier-A CSS art (agenda card) · nav: N5 floating pill · footer: Ft1 mast-headed
+ * studied: no · context: inferred (audiencia=médicos y clínicas LATAM · uso=solicitar demo · tono=modern-minimal clínico)
+ * contrast: pass (46–50) · slop: pass (51–55) · honest: pass (56) · chrome: pass (57) · tokens: pass (58)
+ * responsive: pass (59) · icons: pass (60) · mobile: pass (36, 59, 61–69)
+ */
+
+:root {
+  /* ---- color · anchor teal 195° ---- */
+  --color-paper:      oklch(98.5% 0.006 195);
+  --color-paper-2:    oklch(96%   0.010 195);
+  --color-paper-3:    oklch(93.5% 0.012 195);
+  --color-card:       oklch(96.5% 0.008 195);
+  --color-rule:       oklch(88%   0.012 195);
+  --color-rule-2:     oklch(92%   0.009 195);
+  --color-muted:      oklch(46%   0.016 210);
+  --color-neutral:    oklch(56%   0.014 205);
+  --color-ink:        oklch(21%   0.014 215);
+  --color-ink-2:      oklch(33%   0.014 212);
+  --color-accent:     oklch(55%   0.13  195);
+  --color-accent-deep:oklch(40%   0.10  200);
+  --color-accent-soft:oklch(93%   0.030 195);
+  --color-accent-ink: oklch(98.5% 0.006 195);
+  --color-focus:      oklch(52%   0.17  195);
+
+  /* ---- secondary hues · for gradient cards (teal anchor + violet + amber) ---- */
+  --color-violet:      oklch(58%   0.16  285);
+  --color-violet-deep: oklch(44%   0.13  288);
+  --color-amber:       oklch(72%   0.13  85);
+  --color-amber-deep:  oklch(56%   0.12  70);
+
+  /* ---- gradients ---- */
+  --grad-brand: linear-gradient(
+    100deg,
+    var(--color-accent) 0%,
+    var(--color-violet) 52%,
+    var(--color-amber-deep) 100%
+  );
+  --grad-card-1: radial-gradient(
+    circle at 50% -12%,
+    oklch(86% 0.105 195) 0%,
+    oklch(92% 0.05 185) 34%,
+    var(--color-card) 64%,
+    var(--color-card) 100%
+  );
+  --grad-card-2: radial-gradient(
+    circle at 50% -12%,
+    oklch(84% 0.095 288) 0%,
+    oklch(91% 0.045 255) 34%,
+    var(--color-card) 64%,
+    var(--color-card) 100%
+  );
+  --grad-card-3: radial-gradient(
+    circle at 50% -12%,
+    oklch(90% 0.095 88) 0%,
+    oklch(89% 0.06 150) 34%,
+    var(--color-card) 64%,
+    var(--color-card) 100%
+  );
+  /* hero aurora — soft, low-chroma, on-paper */
+  --grad-aurora:
+    radial-gradient(38rem 26rem at 12% 8%,  oklch(90% 0.07 195 / 0.55), transparent 60%),
+    radial-gradient(34rem 24rem at 92% 0%,  oklch(89% 0.07 288 / 0.45), transparent 62%),
+    radial-gradient(30rem 22rem at 78% 96%, oklch(92% 0.07 88  / 0.40), transparent 60%);
+
+  /* superficies oscuras (sección CTA) */
+  --color-dark-surface: oklch(26% 0.014 213);
+  --color-dark-border:  oklch(40% 0.014 212);
+  --color-dark-text:    oklch(78% 0.012 205);
+  --color-dark-muted:   oklch(72% 0.012 208);
+  --color-focus-dark:   oklch(70% 0.13  195);
+
+  /* sombras */
+  --shadow-pill:  0 8px 24px -12px oklch(25% 0.02 210 / 0.25);
+  --shadow-card:  0 24px 48px -32px oklch(25% 0.03 210 / 0.4);
+  --shadow-toast: 0 12px 28px -16px oklch(25% 0.03 210 / 0.5);
+  --shadow-sheet: 0 16px 40px -20px oklch(25% 0.02 210 / 0.35);
+  --shadow-lift:  0 20px 40px -28px oklch(25% 0.03 210 / 0.45);
+  --shadow-soft:  0 10px 30px -12px oklch(25% 0.02 210 / 0.14);
+  --shadow-float: 0 14px 40px -16px oklch(25% 0.03 210 / 0.16);
+  --shadow-hero:  0 50px 120px -40px oklch(24% 0.04 212 / 0.22);
+
+  /* ---- type ---- */
+  --font-display: var(--font-outfit), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --text-xs:   0.8rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.9531rem;
+  --text-2xl:  2.4414rem;
+  --text-3xl:  3.0518rem;
+  --text-display-s: clamp(2.1rem, 3.4vw + 0.8rem, 3.4rem);
+  --text-display:   clamp(2.75rem, 5vw + 1rem, 5rem);
+
+  /* ---- space · 4pt ---- */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  /* ---- motion ---- */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  /* ---- misc ---- */
+  --rule-hair: 1px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 200;
+}
