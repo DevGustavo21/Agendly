@@ -472,23 +472,39 @@ export default function Home() {
               <p className="plan__for">
                 Para el consultorio que quiere su agenda en orden.
               </p>
-              {/* Sustituye “$ —” por tu tarifa real */}
               <p className="plan__price">
-                <span className="plan__amount">$ —</span>
+                <span className="plan__amount">$25</span>
                 <span className="plan__period">/ mes</span>
               </p>
-              <p className="plan__pending">Tarifa por definir</p>
-              <ul className="plan__features">
-                <li>Reserva de citas en línea, 24/7</li>
-                <li>Panel administrativo</li>
-                <li>Registro manual de citas</li>
-                <li>Calendario del consultorio</li>
-                <li>Expediente clínico por paciente</li>
-                <li>Analíticas de tu consulta</li>
-              </ul>
+              <p className="plan__pending">
+                Facturación mensual · IVA no incluido
+              </p>
               <a href="#demo" className="btn btn--ghost">
                 Empezar con Regular
               </a>
+              <ul className="plan__features">
+                <li>Hasta 2 usuarios (doctor + recepción)</li>
+                <li>Reserva de citas en línea, 24/7</li>
+                <li>
+                  Página de reservas con tu logo y enlace para WhatsApp,
+                  Instagram y código QR
+                </li>
+                <li>Panel administrativo</li>
+                <li>Registro manual de citas</li>
+                <li>
+                  Calendario con bloqueo de días/horas y cupos por hora
+                </li>
+                <li>Expediente o ficha por paciente con historial</li>
+                <li>
+                  Portal del paciente: consulta su ficha y expediente en línea
+                </li>
+                <li>Recordatorio de seguimiento (próxima cita sugerida)</li>
+                <li>Recordatorios y confirmaciones por correo</li>
+                <li>Analíticas de tu consulta</li>
+                <li>
+                  Exporta y conserva tu agenda y expedientes al cambiar de plan
+                </li>
+              </ul>
             </article>
 
             <article className="plan plan--pro rise">
@@ -497,22 +513,32 @@ export default function Home() {
               <p className="plan__for">
                 Para el consultorio que no quiere ni una silla vacía.
               </p>
-              {/* Sustituye “$ —” por tu tarifa real */}
               <p className="plan__price">
-                <span className="plan__amount">$ —</span>
+                <span className="plan__amount">$35</span>
                 <span className="plan__period">/ mes</span>
               </p>
-              <p className="plan__pending">Tarifa por definir</p>
-              <ul className="plan__features">
-                <li className="plan__inherit">Todo lo del plan Regular</li>
-                <li>Recordatorios de cita por mensaje</li>
-                <li>Confirmación y cancelación con un toque</li>
-                <li>Aviso automático al liberar un horario</li>
-                <li>Soporte prioritario</li>
-              </ul>
+              <p className="plan__pending">
+                Facturación mensual · IVA no incluido
+              </p>
               <a href="#demo" className="btn btn--fill">
                 Quiero el plan Pro
               </a>
+              <ul className="plan__features">
+                <li className="plan__inherit">
+                  Todo lo del plan Regular, y además:
+                </li>
+                <li>Hasta 10 usuarios con roles (doctor y recepción)</li>
+                <li>Recordatorios de cita por WhatsApp (24 h y 2 h antes)</li>
+                <li>Confirmación y cancelación con un toque</li>
+                <li>Aviso automático al liberar un horario (lista de espera)</li>
+                <li>Múltiples profesionales y calendarios</li>
+                <li>Analíticas avanzadas: tasa de ausentismo y ocupación</li>
+                <li>Solicitud automática de reseñas a tus pacientes</li>
+                <li>Mensajes de cumpleaños y campañas a tu base de pacientes</li>
+                <li>Citas recurrentes y de seguimiento automáticas</li>
+                <li>Respaldo automático de tu información</li>
+                <li>Soporte prioritario</li>
+              </ul>
             </article>
           </div>
           <p className="pricing__note rise">

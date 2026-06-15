@@ -1354,7 +1354,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
   gap: var(--space-lg);
-  align-items: center;
+  align-items: stretch;
   max-width: 58rem;
   margin-inline: auto;
 }
@@ -1501,6 +1501,7 @@ h3 {
 
 .plan .btn {
   width: 100%;
+  margin-top: var(--space-lg);
 }
 
 @media (max-width: 48rem) {
