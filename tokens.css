@@ -41,23 +41,44 @@
   );
   --grad-card-1: radial-gradient(
     circle at 50% -12%,
-    oklch(86% 0.105 195) 0%,
-    oklch(92% 0.05 185) 34%,
-    var(--color-card) 64%,
+    oklch(92% 0.052 195) 0%,
+    oklch(95% 0.026 188) 32%,
+    var(--color-card) 58%,
     var(--color-card) 100%
   );
   --grad-card-2: radial-gradient(
     circle at 50% -12%,
-    oklch(84% 0.095 288) 0%,
-    oklch(91% 0.045 255) 34%,
-    var(--color-card) 64%,
+    oklch(91% 0.05 288) 0%,
+    oklch(95% 0.024 270) 32%,
+    var(--color-card) 58%,
     var(--color-card) 100%
   );
   --grad-card-3: radial-gradient(
     circle at 50% -12%,
-    oklch(90% 0.095 88) 0%,
-    oklch(89% 0.06 150) 34%,
-    var(--color-card) 64%,
+    oklch(94% 0.05 88) 0%,
+    oklch(95% 0.03 130) 32%,
+    var(--color-card) 58%,
+    var(--color-card) 100%
+  );
+  --grad-card-4: radial-gradient(
+    circle at 50% -12%,
+    oklch(93% 0.05 150) 0%,
+    oklch(95% 0.026 165) 32%,
+    var(--color-card) 58%,
+    var(--color-card) 100%
+  );
+  --grad-card-5: radial-gradient(
+    circle at 50% -12%,
+    oklch(92% 0.05 250) 0%,
+    oklch(95% 0.024 235) 32%,
+    var(--color-card) 58%,
+    var(--color-card) 100%
+  );
+  --grad-card-6: radial-gradient(
+    circle at 50% -12%,
+    oklch(92% 0.05 12) 0%,
+    oklch(95% 0.026 28) 32%,
+    var(--color-card) 58%,
     var(--color-card) 100%
   );
   /* hero aurora — soft, low-chroma, on-paper */

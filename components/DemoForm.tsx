@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 
-// Cambia este correo por el de contacto comercial definitivo.
-const CONTACT_EMAIL = "gustavomejiafuentes2111@gmail.com";
+const CONTACT_EMAIL = "hello@agendly.lat";
 
 export default function DemoForm() {
   const [email, setEmail] = useState("");

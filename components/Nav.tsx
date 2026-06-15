@@ -5,8 +5,8 @@ import Image from "next/image";
 import logo from "@/public/agendly-logo.png";
 
 const links = [
+  { href: "#para-quien", label: "Para quién" },
   { href: "#caracteristicas", label: "Características" },
-  { href: "#como-funciona", label: "Cómo funciona" },
   { href: "#precios", label: "Precios" },
   { href: "#faq", label: "Preguntas" },
 ];

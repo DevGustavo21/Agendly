@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Fraunces, Outfit } from "next/font/google";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({
@@ -24,6 +25,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default:
       "Agendly — Agenda de citas en línea para clínicas, consultorios y negocios con cita previa",
@@ -31,30 +33,57 @@ export const metadata: Metadata = {
   },
   description:
     "Plataforma de agendamiento: tus clientes reservan en línea 24/7 y tú administras agenda, fichas y analíticas desde un solo panel. Para clínicas, veterinarias, barberías y más. Plan Pro con recordatorios por mensaje.",
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   keywords: [
+    "agenda de citas en línea",
+    "software de citas",
+    "agendamiento en línea",
+    "sistema de reservas",
     "agenda de citas médicas",
-    "citas médicas en línea",
     "software para consultorio médico",
-    "agendamiento médico",
     "sistema de citas para clínicas",
     "expediente clínico electrónico",
-    "recordatorios de citas por mensaje",
+    "agenda para veterinarias",
+    "software para barberías",
+    "reservas para spa y estética",
+    "recordatorios de citas por WhatsApp",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  verification: {
+    google: "4CUgxOUTbzH7zoigA3kV3GYUt0HubC6aFp974jY_LrQ",
+  },
   openGraph: {
     type: "website",
     locale: "es_MX",
-    siteName: "Agendly",
-    title: "Agendly — Agenda de citas en línea",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "Agendly — Agenda de citas en línea, 24/7",
     description:
-      "Tus clientes reservan en línea 24/7. Tú administras agenda, fichas y analíticas desde un solo panel.",
+      "Tus clientes reservan en línea 24/7. Tú administras agenda, fichas y analíticas desde un solo panel. Para clínicas, veterinarias, barberías y más.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agendly — Agenda de citas en línea",
+    title: "Agendly — Agenda de citas en línea, 24/7",
     description:
       "Tus clientes reservan en línea 24/7. Tú administras agenda, fichas y analíticas desde un solo panel.",
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "business",
 };
 
 export const viewport: Viewport = {

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import DemoForm from "@/components/DemoForm";
+import FeatureTabs from "@/components/FeatureTabs";
+import { SITE_URL } from "@/lib/site";
 import logo from "@/public/agendly-logo.png";
 
 const faqs = [
@@ -11,6 +13,10 @@ const faqs = [
   {
     q: "¿Mis pacientes necesitan descargar una app?",
     a: "No. Reciben una liga — por WhatsApp, redes o tu sitio — y agendan desde el navegador de su teléfono en menos de un minuto.",
+  },
+  {
+    q: "¿Puedo traer mis datos de otra plataforma?",
+    a: "Sí. Importas tus clientes, contactos e historial desde un archivo Excel o CSV: asignas cada columna a su campo y Agendly detecta duplicados antes de confirmar, para que no pierdas la información de tus pacientes al cambiarte.",
   },
   {
     q: "¿Puedo seguir registrando citas que me llegan por teléfono?",
@@ -30,37 +36,140 @@ const faqs = [
   },
 ];
 
-const specialties = [
-  "Clínicas médicas",
-  "Consultorios",
-  "Veterinarias",
-  "Barberías",
-  "Dentistas",
-  "Spa y estética",
-  "Nutrición",
-  "Fisioterapia",
-  "Psicología",
-  "Centros de salud",
+const iconProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.6,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
+const audiences = [
+  {
+    title: "Clínicas y consultorios",
+    desc: "Agenda, expediente y recordatorios para que cada paciente llegue a tiempo.",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+        <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" />
+      </svg>
+    ),
+  },
+  {
+    title: "Dentistas",
+    desc: "Tratamientos por sesión, control de citas y recordatorios automáticos.",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 5.5c-1.074-.586-2.583-1.5-4-1.5-2.21 0-4 1.79-4 4 0 1.272.47 2.62.898 4.534.43 1.926.995 4.214 1.602 6.466.18.66.47 1.5 1 1.5.66 0 .816-1.04 1-1.75.3-1.17.582-2.355.896-3.534.21-.79.5-1.916 1.604-1.916s1.394 1.126 1.604 1.916c.314 1.179.596 2.364.896 3.534.184.71.34 1.75 1 1.75.53 0 .82-.84 1-1.5.607-2.252 1.172-4.54 1.602-6.466.428-1.914.898-3.262.898-4.534 0-2.21-1.79-4-4-4-1.417 0-2.926.914-4 1.5Z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Veterinarias",
+    desc: "Reserva por mascota y dueño, historial clínico y avisos de seguimiento.",
+    icon: (
+      <svg {...iconProps}>
+        <circle cx="11" cy="4" r="2" />
+        <circle cx="18" cy="8" r="2" />
+        <circle cx="20" cy="16" r="2" />
+        <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Barberías y peluquerías",
+    desc: "Agenda por profesional, sin cruces de citas y con clientes propios.",
+    icon: (
+      <svg {...iconProps}>
+        <circle cx="6" cy="6" r="3" />
+        <path d="M8.12 8.12 12 12" />
+        <path d="M20 4 8.12 15.88" />
+        <circle cx="6" cy="18" r="3" />
+        <path d="M14.8 14.8 20 20" />
+      </svg>
+    ),
+  },
+  {
+    title: "Spa, estética y belleza",
+    desc: "Reservas tranquilas, confirmaciones automáticas y clientes que regresan.",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0Z" />
+        <path d="M20 3v4" />
+        <path d="M22 5h-4" />
+        <path d="M4 17v2" />
+        <path d="M5 18H3" />
+      </svg>
+    ),
+  },
+  {
+    title: "Nutrición, fisio y psicología",
+    desc: "Sesiones recurrentes, fichas y recordatorios para no perder el seguimiento.",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+      </svg>
+    ),
+  },
 ];
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "SoftwareApplication",
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Agendly",
+      url: SITE_URL,
+      logo: `${SITE_URL}/agendly-icon-512.png`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Agendly",
+      inLanguage: "es",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${SITE_URL}/#software`,
+      name: "Agendly",
+      url: SITE_URL,
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Plataforma de agendamiento de citas médicas en línea para consultorios y clínicas: reservas 24/7, panel administrativo, calendario, expediente clínico y analíticas. Plan Pro con recordatorios por mensaje.",
+        "Plataforma de agendamiento de citas en línea para clínicas, consultorios, veterinarias, barberías y negocios con cita previa: reservas 24/7, panel administrativo, calendario, fichas y analíticas. Plan Pro con recordatorios por WhatsApp.",
       inLanguage: "es",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Regular",
+          price: "25",
+          priceCurrency: "USD",
+          category: "subscription",
+        },
+        {
+          "@type": "Offer",
+          name: "Pro",
+          price: "35",
+          priceCurrency: "USD",
+          category: "subscription",
+        },
+      ],
       audience: {
         "@type": "Audience",
-        audienceType: "Médicos, consultorios y clínicas",
+        audienceType:
+          "Clínicas, consultorios, veterinarias, barberías y negocios con cita previa",
       },
     },
     {
       "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
       mainEntity: faqs.map((f) => ({
         "@type": "Question",
         name: f.q,
@@ -185,23 +294,38 @@ export default function Home() {
             </div>
           </div>
 
-          {/* especialidades · marquee */}
-          <div className="marquee-band">
-            <p className="marquee-cap">
-              Para clínicas, veterinarias, barberías y todo negocio con cita
-              previa
-            </p>
-            <div className="marquee" aria-hidden="true">
-              <div className="marquee__track">
-                {[...specialties, ...specialties].map((s, i) => (
-                  <span className="marquee__item" key={`${s}-${i}`}>
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
         </header>
+
+        {/* ===== Para quién es ===== */}
+        <section className="section wrap" id="para-quien">
+          <div className="section__head rise">
+            <span className="eyebrow">Para quién es</span>
+            <h2 className="section__title">
+              Hecho para negocios que viven de sus citas
+            </h2>
+            <p className="section__lede">
+              Si tu día depende de horarios, citas y clientes que regresan,
+              Agendly se adapta a tu forma de trabajar — desde una clínica hasta
+              una barbería.
+            </p>
+          </div>
+          <div className="audience__grid">
+            {audiences.map((a, i) => (
+              <article
+                className={`aud-card aud-card--${i + 1} rise`}
+                key={a.title}
+              >
+                <span className="aud-card__icon" aria-hidden="true">
+                  {a.icon}
+                </span>
+                <div className="aud-card__body">
+                  <h3>{a.title}</h3>
+                  <p>{a.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
         {/* ===== Características · 3 gradient cards ===== */}
         <section className="section wrap features" id="caracteristicas">
@@ -295,6 +419,9 @@ export default function Home() {
             </article>
           </div>
         </section>
+
+        {/* ===== Lo que incluye · tabs ===== */}
+        <FeatureTabs />
 
         {/* ===== Cómo funciona · F4 ===== */}
         <section className="section wrap" id="como-funciona">
@@ -500,7 +627,10 @@ export default function Home() {
                 </li>
                 <li>Recordatorio de seguimiento (próxima cita sugerida)</li>
                 <li>Recordatorios y confirmaciones por correo</li>
-                <li>Analíticas de tu consulta</li>
+                <li>
+                  Importa tus pacientes desde Excel o CSV de tu plataforma
+                  anterior
+                </li>
                 <li>
                   Exporta y conserva tu agenda y expedientes al cambiar de plan
                 </li>
@@ -536,7 +666,6 @@ export default function Home() {
                 <li>Solicitud automática de reseñas a tus pacientes</li>
                 <li>Mensajes de cumpleaños y campañas a tu base de pacientes</li>
                 <li>Citas recurrentes y de seguimiento automáticas</li>
-                <li>Respaldo automático de tu información</li>
                 <li>Soporte prioritario</li>
               </ul>
             </article>
@@ -607,10 +736,7 @@ export default function Home() {
               <p>
                 ¿Tu duda no está aquí? Escríbenos y te respondemos con gusto.
               </p>
-              <a
-                href="mailto:gustavomejiafuentes2111@gmail.com"
-                className="btn btn--ghost"
-              >
+              <a href="mailto:hello@agendly.lat" className="btn btn--ghost">
                 Escríbenos por correo
               </a>
             </div>
@@ -647,7 +773,13 @@ export default function Home() {
             <h3>Recorre el sitio</h3>
             <ul>
               <li>
+                <a href="#para-quien">Para quién es</a>
+              </li>
+              <li>
                 <a href="#caracteristicas">Características</a>
+              </li>
+              <li>
+                <a href="#incluye">Lo que incluye</a>
               </li>
               <li>
                 <a href="#como-funciona">Cómo funciona</a>
@@ -667,9 +799,7 @@ export default function Home() {
             <h3>Contacto</h3>
             <ul>
               <li>
-                <a href="mailto:gustavomejiafuentes2111@gmail.com">
-                  Escríbenos por correo
-                </a>
+                <a href="mailto:hello@agendly.lat">hello@agendly.lat</a>
               </li>
               <li>
                 <a href="#demo">Solicitar una demo</a>
